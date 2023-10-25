@@ -1,6 +1,19 @@
 # test1
 
 ## Setup
+Obtain an [API Key from Alphavantage](https://www.alphavantage.co/support/#api-key) or from the prof (`ALPHAVANTAGE_API_KEY`).
+
+Create a ".env" file and paste in the following contents:
+
+```sh
+# this is the ".env" file...
+
+ALPHAVANTAGE_API_KEY="_________"
+```
+
+
+
+
 Create an activate an anaconda environment python
 
 ```sh
@@ -24,4 +37,5 @@ run the unemployment report
 ```sh
 python app/unemployment.py
 
+ALPHAVANTAGE_API_KEY="abc123" python app/unemployment.py
 ```

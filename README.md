@@ -5,27 +5,27 @@ Obtain an [API Key from Alphavantage](https://www.alphavantage.co/support/#api-k
 
 Create a ".env" file and paste in the following contents:
 
-```sh
-# this is the ".env" file...
+    ```sh
+    # this is the ".env" file...
 
-ALPHAVANTAGE_API_KEY="_________"
-```
-
-
+    ALPHAVANTAGE_API_KEY="_________"
+    ```
 
 
 Create an activate an anaconda environment python
 
-```sh
-conda create -n my-first-env python=3.10
-conda activate my-first-env
-```
+    ```sh
+    conda create -n my-first-env python=3.10
+    conda activate my-first-env
+    ```
 
 Install Packages:
-```sh
-pip install -r requirements.txt
-```
+    ```sh
+    pip install -r requirements.txt
+    ```
 can also use a requirements.txt file to install all the packages 
+
+
 
 ## Usage 
 running the python script 

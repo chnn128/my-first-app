@@ -3,3 +3,5 @@
 requests 
 plotly.express #seems to install pandas and other packages as well as plotly. If it didn't we would add pandas to this file as well
 python-dotenv
+
+sendgrid==6.5.0

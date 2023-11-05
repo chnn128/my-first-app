@@ -39,8 +39,9 @@ python app/my_script.py
 
 run the unemployment report 
 ```sh
-python app/unemployment.py
+python -m app.unemployment
 
+#passing in parameters through the terminal, rather than through .env file
 ALPHAVANTAGE_API_KEY="abc123" python app/unemployment.py
 ```
 

@@ -38,24 +38,28 @@ def send_email(recipient_address=SENDER_ADDRESS, subject="[Shopping Cart App] Te
     except requests.exceptions.RequestException as e:
         print(f"Error sending email: {str(e)}")
 
-my_content = """
 
-    <img
-        src="https://img.freepik.com/free-vector/flat-ice-cream-collection_23-2148982427.jpg"
-        alt="image of an ice cream"
-        height=100
-    >
+if __name__ == "__main__":
+    ##only want to do if running from command line
+    my_content = """
 
-    <h1>Ice Cream Shop Menu</h1>
+        <img
+            src="https://img.freepik.com/free-vector/flat-ice-cream-collection_23-2148982427.jpg"
+            alt="image of an ice cream"
+            height=100
+        >
 
-    <p>Most popular flavors:</p>
+        <h1>Ice Cream Shop Menu</h1>
 
-    <ul>
-        <li>Vanilla Bean </li>
-        <li>Choc </li>
-        <li>Strawberry</li>
-    </ul>
-"""
+        <p>Most popular flavors:</p>
 
-user_address = input("Please enter your email address: ")
-send_email(html_content=my_content, recipient_address=user_address)
+        <ul>
+            <li>Vanilla Bean </li>
+            <li>Choc </li>
+            <li>Strawberry</li>
+        </ul>
+    """
+
+
+    user_address = input("Please enter your email address: ")
+    send_email(html_content=my_content, recipient_address=user_address)

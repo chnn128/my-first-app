@@ -10,8 +10,8 @@ Create a ".env" file and paste in the following contents:
 
     ALPHAVANTAGE_API_KEY="_________"
 
-    SENDGRID_API_KEY =  "to do"
-    SENDER_ADDRESS = "example@gmail.com"
+    MAILGUN_API_KEY =  "to do"
+    SENDER_ADDRESS = "sandbox9963f0dedce64ffc896e58aa1f62a4b3.mailgun.org"
     ```
 
 

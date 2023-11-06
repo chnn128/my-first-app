@@ -22,6 +22,8 @@ print(API_KEY) #To double check the api key
 #breakpoint() 
 #quit()
 
+
+
 # FUNCTIONS / DEFINITIONS
 
 
@@ -42,10 +44,14 @@ data = parsed_response["data"]
 # What is the most recent unemployment rate? And the corresponding date?
 # Display the unemployment rate using a percent sign.
 
+latest_rate = data[0]['value']
+latest_date = data[0]["date"]
+
+
 print("-------------------------")
 print("LATEST UNEMPLOYMENT RATE:")
 #print(data[0])
-print(f"{data[0]['value']}%", "as of", data[0]["date"])
+print(f"{latest_rate}%", "as of", latest_date)
 
 
 # Challenge B
@@ -79,9 +85,6 @@ fig.show()
 
 
 user_address = input("Please enter your email address: ")
-
-latest_rate = data[0]['value']
-latest_date = data[0]["date"]
 
 content = f"""
 <h1> Unemployment Report Email </h1>

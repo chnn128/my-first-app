@@ -1,4 +1,4 @@
-# test1
+# my-first-app
 
 ## Setup
 Obtain an [API Key from Alphavantage](https://www.alphavantage.co/support/#api-key) or from the prof (`ALPHAVANTAGE_API_KEY`).

@@ -1,4 +1,4 @@
-# test1
+# my-first-app
 
 ## Setup
 Obtain an [API Key from Alphavantage](https://www.alphavantage.co/support/#api-key) or from the prof (`ALPHAVANTAGE_API_KEY`).
@@ -50,3 +50,16 @@ Send an email
 python app/email_service.py
 
 ```
+
+## Testing
+
+Run tests:
+
+```sh
+pytest
+```
+
+
+
+
+

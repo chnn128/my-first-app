@@ -35,8 +35,13 @@ def send_email(recipient_address=SENDER_ADDRESS, subject="[Shopping Cart App] Te
         print("RESULT:", response.status_code)
         response.raise_for_status()
         print("Email sent successfully!")
+
+        return response.status_code
+    
     except requests.exceptions.RequestException as e:
         print(f"Error sending email: {str(e)}")
+
+        return None
 
 
 if __name__ == "__main__":

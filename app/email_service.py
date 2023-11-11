@@ -7,10 +7,9 @@ from dotenv import load_dotenv
 #Environment Variables and Constants 
 load_dotenv() #go look in .env for env variables 
 
-MAILGUN_API_KEY = os.getenv("MAILGUN_API_KEY")
-MAILGUN_API_KEY = str(MAILGUN_API_KEY)
-SENDER_ADDRESS = os.getenv("SENDER_ADDRESS")
-MAILGUN_DOMAIN = os.getenv("MAILGUN_DOMAIN")
+MAILGUN_API_KEY = str(os.getenv("MAILGUN_API_KEY"))
+SENDER_ADDRESS = str(os.getenv("SENDER_ADDRESS"))
+MAILGUN_DOMAIN = str(os.getenv("MAILGUN_DOMAIN"))
 
 
 

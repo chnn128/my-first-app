@@ -1,4 +1,4 @@
-#this is the my_mod_test file 
+#this is the test/my_mod_test.py file 
 
 from app.my_mod import enlarge
 

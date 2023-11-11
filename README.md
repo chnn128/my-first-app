@@ -66,6 +66,7 @@ Send an email:
 ## Testing
 
 Run tests:
+    from the terminal, enter the following command: 
 
     ```sh
     pytest

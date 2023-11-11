@@ -5,5 +5,6 @@ plotly.express #seems to install pandas and other packages as well as plotly. If
 pandas
 python-dotenv
 pytest
-
+pgeocode
+IPython
 # sendgrid==6.5.0 - I am not using sendgrid, using mailgun instead

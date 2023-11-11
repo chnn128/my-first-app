@@ -54,7 +54,7 @@ Running the unemployment report:
     ```
 
 
-Send an email
+Send an email:
 
     ```sh
     python app/email_service.py

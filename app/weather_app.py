@@ -94,7 +94,7 @@ def forecast_demo(zip_code, country_code="US"):
     return HTML(df.to_html(escape=False, formatters=dict(icon=to_image)))
 
 
-def display_forecast(zip_code, country_code="US"):
+def display_forecast(zip_code = 20057, country_code="US"):
     """
     Displays a seven day weather forecast for the provided zip code.
 
@@ -105,6 +105,7 @@ def display_forecast(zip_code, country_code="US"):
         zip_code (str) a valid US zip code, like "20057" or "06510".
 
     """
+    #print(zip_code)
     degree_sign = u"\N{DEGREE SIGN}"
 
     nomi = Nominatim(country_code)
@@ -133,7 +134,10 @@ def display_forecast(zip_code, country_code="US"):
         #print(period["detailedForecast"])
         display(Image(url=period["icon"]))
 
+    return forecast_response.status_code
+
 if __name__ == "__main__":
     zip_entered = input("Please enter a zip code: ")
-    display_forecast(str(zip_entered))
+    display_forecast(zip_code=str(zip_entered))
+    #forecast_demo(str(zip_entered))
 

@@ -18,8 +18,18 @@ def to_image(url):
 def chopped_date(start_time):
     return start_time[5:10]
 
+def get_location_detail(zip_code = 20057, country_code = "US"):
+    nomi = Nominatim(country_code)
+    geo = nomi.query_postal_code(zip_code)
 
-def forecast_demo(zip_code, country_code="US"):
+    renamed_geo = geo[['place_name', 'state_name', 'postal_code', 'county_name']]
+    renamed_geo = renamed_geo.rename(index={'place_name': 'Place', 'state_name': 'State', 'postal_code': 'Zip Code', 'county_name': 'County'})
+    print(f" City: {renamed_geo['Place']}\n State: {renamed_geo['State']}\n Zip Code: {renamed_geo['Zip Code']}\n County: {renamed_geo['County']}")
+    #print(renamed_geo[['Place', 'State', 'Zip Code', 'County']])
+    
+    return geo
+
+def forecast_demo(zip_code = 20057, country_code="US"):
     """
     Displays a seven day weather forecast for the provided zip code.
 
@@ -32,8 +42,7 @@ def forecast_demo(zip_code, country_code="US"):
     """
     degree_sign = u"\N{DEGREE SIGN}"
     
-    nomi = Nominatim(country_code)
-    geo = nomi.query_postal_code(zip_code)
+    geo = get_location_detail(zip_code)
     latitude = geo["latitude"]
     longitude = geo["longitude"]
 
@@ -41,6 +50,7 @@ def forecast_demo(zip_code, country_code="US"):
     response = requests.get(request_url)
     #print(response.status_code)
     parsed_response = json.loads(response.text)
+
 
     forecast_url = parsed_response["properties"]["forecast"]
     forecast_response = requests.get(forecast_url)
@@ -91,6 +101,7 @@ def forecast_demo(zip_code, country_code="US"):
     print("SEVEN DAY FORECAST")
     print("LOCATION:", f"{geo.place_name}, {geo.state_code}".upper())
     print("---")
+
     return HTML(df.to_html(escape=False, formatters=dict(icon=to_image)))
 
 
@@ -108,11 +119,10 @@ def display_forecast(zip_code = 20057, country_code="US"):
     #print(zip_code)
     degree_sign = u"\N{DEGREE SIGN}"
 
-    nomi = Nominatim(country_code)
-    geo = nomi.query_postal_code(zip_code)
+    geo = get_location_detail(zip_code)
     latitude = geo["latitude"]
     longitude = geo["longitude"]
-
+    
     request_url = f"https://api.weather.gov/points/{latitude},{longitude}"
     response = requests.get(request_url)
     #print(response.status_code)

@@ -1,17 +1,15 @@
-import requests
+import requests #for Mailgun functionality
 import os
 
 from dotenv import load_dotenv
+#Sendgrid Packages are omitted
 
 #Environment Variables and Constants 
 load_dotenv() #go look in .env for env variables 
-MAILGUN_API_KEY = os.getenv("MAILGUN_API_KEY")
-SENDER_ADDRESS = os.getenv("SENDER_ADDRESS")
 
-
-
-MAILGUN_DOMAIN = "sandbox9963f0dedce64ffc896e58aa1f62a4b3.mailgun.org"
-# testing code print(MAILGUN_API_KEY, SENDER_ADDRESS, MAILGUN_DOMAIN)
+MAILGUN_API_KEY = str(os.getenv("MAILGUN_API_KEY"))
+SENDER_ADDRESS = str(os.getenv("SENDER_ADDRESS"))
+MAILGUN_DOMAIN = str(os.getenv("MAILGUN_DOMAIN"))
 
 
 
@@ -45,7 +43,7 @@ def send_email(recipient_address=SENDER_ADDRESS, subject="[Shopping Cart App] Te
 
 
 if __name__ == "__main__":
-    ##only want to do if running from command line
+    # only want to run this if running from command line, not if importing a function from this file
     my_content = """
 
         <img
@@ -64,7 +62,6 @@ if __name__ == "__main__":
             <li>Strawberry</li>
         </ul>
     """
-
 
     user_address = input("Please enter your email address: ")
     send_email(html_content=my_content, recipient_address=user_address)

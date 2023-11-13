@@ -1,9 +1,10 @@
 #this file contains all the required packages that must be installed 
 
 requests 
-plotly.express #seems to install pandas and other packages as well as plotly
+plotly.express #seems to install pandas and other packages as well as plotly. If it didn't we would add pandas to this file as well
 pandas
 python-dotenv
-pytest #for testing 
-
+pytest
+pgeocode
+IPython
 # sendgrid==6.5.0 - I am not using sendgrid, using mailgun instead

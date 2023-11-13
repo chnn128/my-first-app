@@ -58,10 +58,15 @@ Send an email:
 
     ```sh
     python app/email_service.py
-
+    python -m app.email_service
     ```
 
+Run Weather App:
 
+    ```sh
+    python -m app.weather_app
+
+    ```
 
 ## Testing
 

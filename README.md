@@ -27,7 +27,7 @@ Create a ".env" file and paste in the following contents:
     ALPHAVANTAGE_API_KEY = "_________" #paste in your AlphaVantage API Key
 
     MAILGUN_API_KEY =  "__________" #place in your Mailgun API Key
-    SENDER_ADDRESS = "sandbox9963f0dedce64ffc896e58aa1f62a4b3.mailgun.org" #this is Edward's domain, replace with the domain corresponding to your API Key 
+    SENDER_ADDRESS = "__________" #replace with the domain corresponding to your API Key 
 
     ```
 

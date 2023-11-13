@@ -18,7 +18,17 @@ def to_image(url):
 def chopped_date(start_time):
     return start_time[5:10]
 
-def get_location_detail(zip_code = 20057, country_code = "US"):
+
+def degree_sign():
+    return u"\N{DEGREE SIGN}"
+
+
+def dashed_line():
+    print(str("-------------"))
+    return str("-------------")
+
+
+def get_and_display_location_detail(zip_code = 20057, country_code = "US"):
     nomi = Nominatim(country_code)
     geo = nomi.query_postal_code(zip_code)
 
@@ -29,20 +39,9 @@ def get_location_detail(zip_code = 20057, country_code = "US"):
     
     return geo
 
-def forecast_demo(zip_code = 20057, country_code="US"):
-    """
-    Displays a seven day weather forecast for the provided zip code.
 
-    Params :
-
-        country_code (str) a valid country code (see supported country codes list). Default is "US".
-
-        zip_code (str) a valid US zip code, like "20057" or "06510".
-
-    """
-    degree_sign = u"\N{DEGREE SIGN}"
+def request_and_clean_data(geo):
     
-    geo = get_location_detail(zip_code)
     latitude = geo["latitude"]
     longitude = geo["longitude"]
 
@@ -60,14 +59,31 @@ def forecast_demo(zip_code = 20057, country_code="US"):
     periods = parsed_forecast_response["properties"]["periods"]
     daytime_periods = [period for period in periods if period["isDaytime"] == True]
 
+    return [daytime_periods, forecast_response.status_code]
+
+
+def forecast_demo(zip_code = 20057, country_code="US"):
+    """
+    Displays a seven day weather forecast for the provided zip code.
+
+    Params :
+
+        country_code (str) a valid country code (see supported country codes list). Default is "US".
+
+        zip_code (str) a valid US zip code, like "20057" or "06510".
+
+    """
+    geo = get_and_display_location_detail(zip_code)
+    daytime_periods = request_and_clean_data(geo)[0]
+
+
     #for period in daytime_periods:
     #    #print(period.keys())
-    #    print("-------------")
+    #    dashed_line()
     #    print(period["name"], period["startTime"][0:7])
-    #    print(period["shortForecast"], f"{period['temperature']} {degree_sign}{period['temperatureUnit']}")
+    #    print(period["shortForecast"], f"{period['temperature']} {degree_sign()}{period['temperatureUnit']}")
     #    #print(period["detailedForecast"])
     #    display(Image(url=period["icon"]))
-
 
     df = DataFrame(daytime_periods)
 
@@ -77,7 +93,7 @@ def forecast_demo(zip_code = 20057, country_code="US"):
 
     # combined column for temp display
     # ... h/t: https://stackoverflow.com/questions/19377969/combine-two-columns-of-text-in-pandas-dataframe
-    df["temp"] = df["temperature"].astype(str) + " " + degree_sign + df["temperatureUnit"]
+    df["temp"] = df["temperature"].astype(str) + " " + degree_sign() + df["temperatureUnit"]
 
     # rename cols:
     df.rename(columns={
@@ -97,10 +113,10 @@ def forecast_demo(zip_code = 20057, country_code="US"):
     df = df.reindex(columns=['day', 'date', 'temp', 'forecast', 'icon'])
 
     # return df
-    print("---")
+    dashed_line()
     print("SEVEN DAY FORECAST")
     print("LOCATION:", f"{geo.place_name}, {geo.state_code}".upper())
-    print("---")
+    dashed_line()
 
     return HTML(df.to_html(escape=False, formatters=dict(icon=to_image)))
 
@@ -117,34 +133,22 @@ def display_forecast(zip_code = 20057, country_code="US"):
 
     """
     #print(zip_code)
-    degree_sign = u"\N{DEGREE SIGN}"
 
-    geo = get_location_detail(zip_code)
-    latitude = geo["latitude"]
-    longitude = geo["longitude"]
-    
-    request_url = f"https://api.weather.gov/points/{latitude},{longitude}"
-    response = requests.get(request_url)
-    #print(response.status_code)
-    parsed_response = json.loads(response.text)
+    geo = get_and_display_location_detail(zip_code)
+    data_pull_response = request_and_clean_data(geo)
 
-    forecast_url = parsed_response["properties"]["forecast"]
-    forecast_response = requests.get(forecast_url)
-    #print(forecast_response.status_code)
-    parsed_forecast_response = json.loads(forecast_response.text)
-
-    periods = parsed_forecast_response["properties"]["periods"]
-    daytime_periods = [period for period in periods if period["isDaytime"] == True]
+    daytime_periods = data_pull_response[0]
+    request_response_code = data_pull_response[1]
 
     for period in daytime_periods:
         #print(period.keys())
-        print("-------------")
+        dashed_line()
         print(period["name"], period["startTime"][0:7])
-        print(period["shortForecast"], f"{period['temperature']} {degree_sign}{period['temperatureUnit']}")
+        print(period["shortForecast"], f"{period['temperature']} {degree_sign()}{period['temperatureUnit']}")
         #print(period["detailedForecast"])
         display(Image(url=period["icon"]))
 
-    return forecast_response.status_code
+    return request_response_code
 
 if __name__ == "__main__":
     zip_entered = input("Please enter a zip code: ")

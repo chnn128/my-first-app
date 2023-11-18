@@ -7,4 +7,5 @@ python-dotenv
 pytest
 pgeocode
 IPython
+flask
 # sendgrid==6.5.0 - I am not using sendgrid, using mailgun instead

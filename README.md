@@ -68,6 +68,19 @@ Run Weather App:
 
     ```
 
+Run Flask App:
+
+    ```sh 
+    
+    FLASK_APP=web_app flask run
+
+    ```
+
+Run the stocks report
+
+```sh 
+python -m app.stocks
+```
 ## Testing
 
 Run tests:
@@ -76,6 +89,7 @@ Run tests:
     ```sh
     pytest
     ```
+
 
 
 

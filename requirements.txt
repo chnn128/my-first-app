@@ -8,4 +8,5 @@ pytest
 pgeocode
 IPython
 flask
+gunicorn
 # sendgrid==6.5.0 - I am not using sendgrid, using mailgun instead

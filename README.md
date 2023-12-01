@@ -1,97 +1,68 @@
-# my-first-app
+# unemployment-inclass-summer-2023
+
+![tests](https://github.com/s2t2/unemployment-2023-testing-prep/actions/workflows/python-app.yml/badge.svg)
 
 ## Setup
 
-Create an activate an anaconda environment python:
+Obtain an [AlphaVantage API Key](https://www.alphavantage.co/support/#api-key). A normal key should be fine, but alternatively you can use one of the prof's "premium" keys. Then create a file called ".env" and place it inside (like the following example):
 
-    ```sh
-    conda create -n my-first-env python=3.10
-    conda activate my-first-env
-    ```
+```sh
+# this is the ".env" file (in the root directory of the repo)
 
-Install Packages: 
-    using a requirements.txt file to install all the packages 
+ALPHAVANTAGE_API_KEY="____________"
+```
 
-    ```sh
-    pip install -r requirements.txt
-    ```
+Create a virtual environment:
 
-Obtain API Keys:
-    Obtain an [API Key from Alphavantage](https://www.alphavantage.co/support/#api-key) or from the prof (`ALPHAVANTAGE_API_KEY`).
-    You must first follow the [setup instructions](https://github.com/prof-rossetti/intro-to-python/blob/main/notes/python/packages/sendgrid.md) to create an account, verify your account, setup a single sender, and obtain an API Key.
+```sh
+conda create -n unemployment-env python=3.10
+```
 
-Create a ".env" file and paste in the following contents:
+```sh
+conda activate unemployment-env
+```
 
-    ```sh
+Install third-party packages:
 
-    ALPHAVANTAGE_API_KEY = "_________" #paste in your AlphaVantage API Key
+```sh
+pip install -r requirements.txt
+```
 
-    MAILGUN_API_KEY =  "__________" #place in your Mailgun API Key
-    SENDER_ADDRESS = "__________" #replace with the domain corresponding to your API Key 
+## Usage
 
-    ```
+Run the unemployment report:
 
-## Usage 
-Running the my_script.py example python script:
-
-    ```sh
-    python app/my_script.py
-    ```
+```sh
+python -m app.unemployment
+```
 
 
-Running the unemployment report:
+Run the stocks report:
 
-    ```sh
-    python -m app.unemployment
-    ```
-
-
-
-    Example code of passing in parameters through the terminal, rather than through .env file   
-
-    ```sh
-    ALPHAVANTAGE_API_KEY="abc123" python app/unemployment.py
-    ```
-
-
-Send an email:
-
-    ```sh
-    python app/email_service.py
-    python -m app.email_service
-    ```
-
-Run Weather App:
-
-    ```sh
-    python -m app.weather_app
-
-    ```
-
-Run Flask App:
-
-    ```sh 
-    
-    FLASK_APP=web_app flask run
-
-    ```
-
-Run the stocks report
-
-```sh 
+```sh
 python -m app.stocks
 ```
+
+
+Run the web app:
+
+```sh
+# Mac OS:
+FLASK_APP=web_app flask run
+
+# Windows OS:
+# ... if `export` doesn't work for you, try `set` instead
+# ... or try a ".env" file approach
+export FLASK_APP=web_app
+flask run
+```
+
+
 ## Testing
 
-Run tests:
-    from the terminal, enter the following command: 
-
-    ```sh
-    pytest
-    ```
+```sh
+pytest
+```
 
 
-
-
-
-
+## [Deployment Guide](/DEPLOYING.md)
